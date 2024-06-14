@@ -1,0 +1,905 @@
+// $themes: (
+//   light: (
+//     text: var(--text-primary),
+//     bg: var(--fill-white),
+//     brand: #567567,
+//     border: var(--color-gray-300),
+//   ),
+//   dark: (
+//     text: var(--text-inverse),
+//     bg: var(--fill-dark),
+//     brand: #abcabc,
+//     border: var(--color-gray-700),
+//   ),
+// );
+
+// @mixin themify($themes) {
+//   @each $name, $values in $themes {
+//     .#{$name} {
+//       $theme-map: $values !global;
+//       @content;
+//     }
+//   }
+// }
+// @function themed($key) {
+//   @return map-get($theme-map, $key);
+// }
+
+@mixin calc($property, $expression) {
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+// Usage Examples:
+// @include calc( width, '100%' );
+// @include calc( width, '100% - 13rem' );
+@mixin container {
+  margin: 0 auto;
+  width: 100%;
+  // max-width: 112rem;
+  max-width: 160rem;
+  padding: 0 3.2rem;
+  @include flex-column;
+  @include devices(mobile) {
+    padding: 0 1.6rem;
+  }
+  @include devices(tablet) {
+    padding: 0 1.6rem;
+  }
+  @include devices(desktop-lg) {
+    // padding-inline-start: 144px;
+    // padding-inline-end: 144px;
+  }
+}
+@mixin container-fluid {
+  @include flex-column;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+@mixin flex {
+  display: flex;
+}
+@mixin flex-column {
+  @include flex;
+  flex-direction: column;
+}
+@mixin flex-row {
+  @include flex;
+  flex-direction: row;
+}
+@mixin flex-row-reverse {
+  @include flex;
+  flex-direction: row-reverse;
+}
+@mixin flex-wrap {
+  @include flex;
+  flex-wrap: wrap;
+}
+@mixin flex-wrap-reverse {
+  @include flex;
+  flex-wrap: wrap-reverse;
+}
+@mixin flex-center {
+  @include flex;
+  align-items: center;
+  justify-content: center;
+}
+@mixin flex-start {
+  @include flex;
+  justify-content: flex-start;
+}
+@mixin flex-end {
+  // Align the flex items at the end of the container
+  @include flex;
+  justify-content: flex-end;
+}
+@mixin flex-between {
+  // Display the flex items with space between the lines
+  @include flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@mixin flex-around {
+  // Display the flex items with space before, between, and after the lines
+  @include flex;
+  justify-content: space-around;
+}
+@mixin flex-evenly {
+  @include flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+@mixin inline-flex {
+  display: inline-flex;
+  align-items: center;
+}
+@mixin inline-flex-column {
+  @include inline-flex;
+  flex-direction: column;
+}
+@mixin devices($breakpoint) {
+  @if $breakpoint == desktop-2xl {
+    @media only screen and (min-width: 1536px) {
+      @content;
+    }
+  }
+  @if $breakpoint == desktop-lg {
+    @media only screen and (min-width: 1280px) {
+      @content;
+    }
+  }
+  @if $breakpoint == desktop {
+    @media only screen and (min-width: 1024px) {
+      @content;
+    }
+  }
+  @if $breakpoint == tablet {
+    @media only screen and (min-width: 768px) and (max-width: 1023px) {
+      @content;
+    }
+  }
+  @if $breakpoint == mobile {
+    @media only screen and (max-width: 767px) {
+      @content;
+    }
+  }
+  @if $breakpoint == not-mobile {
+    @media only screen and (min-width: 768px) {
+      @content;
+    }
+  }
+  // Usage example
+  // @include devices(mobile) {
+  //   h1 {
+  //     font-size: 2rem;
+  //   }
+  // }
+}
+@mixin h1 {
+  font-size: 6.4rem;
+  line-height: 7.2rem;
+  font-style: normal;
+  font-weight: 700;
+  margin: 0;
+  @include devices(mobile) {
+    font-size: 4.4rem;
+    line-height: 5.2rem;
+  }
+}
+@mixin h2 {
+  font-size: 5.6rem;
+  line-height: 6.4rem;
+  font-style: normal;
+  font-weight: 600;
+  margin: 0;
+  @include devices(mobile) {
+    font-size: 3.6rem;
+    line-height: 4.4rem;
+  }
+}
+@mixin h3 {
+  font-size: 4.8rem;
+  line-height: 5.6rem;
+  font-style: normal;
+  font-weight: 600;
+  margin: 0;
+  @include devices(mobile) {
+    font-size: 2.8rem;
+    line-height: 3.6rem;
+  }
+}
+@mixin h4 {
+  font-size: 4rem;
+  line-height: 4.8rem;
+  font-style: normal;
+  font-weight: 600;
+  margin: 0;
+  @include devices(mobile) {
+    font-size: 2rem;
+    line-height: 2.8rem;
+  }
+}
+@mixin h5 {
+  font-size: 3.2rem;
+  line-height: 4rem;
+  font-style: normal;
+  font-weight: 600;
+  margin: 0;
+}
+@mixin h6 {
+  font-size: 2.4rem;
+  line-height: 3.2rem;
+  font-style: normal;
+  font-weight: 600;
+  margin: 0;
+}
+@mixin body-large {
+  font-size: 1.8rem;
+  line-height: 3.2rem;
+  font-style: normal;
+  font-weight: 500;
+  margin: 0;
+}
+@mixin body-regular {
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 2.4rem;
+  margin: 0;
+}
+@mixin body-small {
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2.4rem;
+  margin: 0;
+}
+@mixin body-xsmall {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.6rem;
+  margin: 0;
+}
+@mixin p {
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 3.2rem;
+  margin: 0;
+}
+@mixin anchor-default {
+  color: var(--state-action);
+  &:hover {
+    color: var(--state-action-hover);
+  }
+  &:active,
+  &:focus,
+  &.active {
+    color: var(--state-action-pressed);
+  }
+  &.button {
+    text-decoration: none;
+  }
+}
+@mixin ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  &.disc {
+    list-style: disc;
+    list-style-position: inside;
+
+    li {
+      &::marker {
+        color: var(--text-tertiary);
+        font-size: 2.4rem;
+        &::before {
+          margin-right: 1.6rem;
+        }
+      }
+      &::before {
+        margin-right: 1.6rem;
+        &::marker {
+          margin-right: 1.6rem;
+        }
+      }
+    }
+  }
+}
+@mixin no-wrap {
+  white-space: nowrap;
+}
+@mixin no-word-break {
+  word-break: keep-all;
+}
+
+// **********
+// Drop Shadows
+// **********
+
+/* drop-shadow-default */
+@mixin drop-shadow-default {
+  box-shadow: var(--drop-shadow-default);
+}
+
+// **********
+// Text Shadows
+// **********
+
+/* text-shadow-default */
+@mixin text-shadow-default {
+  text-shadow: var(--text-shadow-default);
+}
+
+// **********
+// Border Radius - Rounded Corners
+// **********
+
+@mixin rounded {
+  border-radius: var(--radii-default);
+}
+@mixin rounded-top {
+  border-radius: var(--radii-rounded-top);
+}
+@mixin rounded-right {
+  border-radius: var(--radii-rounded-right);
+}
+@mixin rounded-right-bottom {
+  border-radius: var(--radii-rounded-right-bottom);
+}
+@mixin rounded-bottom {
+  border-radius: var(--radii-rounded-bottom);
+}
+@mixin rounded-left {
+  border-radius: var(--radii-rounded-left);
+}
+@mixin rounded-left-bottom {
+  border-radius: var(--radii-rounded-left-bottom);
+}
+@mixin circle {
+  border-radius: var(--radii-circle);
+}
+@mixin circle-50 {
+  border-radius: var(--radii-circle-50);
+}
+@mixin rounded-value($radius: var(--radii-default)) {
+  border-radius: $radius;
+}
+
+// **********
+// Cards
+// **********
+
+@mixin card {
+  @include flex-column;
+  @include rounded;
+  @include drop-shadow-default;
+}
+@mixin card-flat {
+  @include flex-column;
+  @include rounded;
+}
+@mixin card-image {
+  width: 100%;
+  @include rounded;
+  &.top {
+    @include rounded-top;
+  }
+  &.bottom {
+    @include rounded-bottom;
+  }
+}
+@mixin card-pad {
+  padding: 1.6rem;
+}
+@mixin card-pad-tb {
+  padding: 1.6rem 0;
+}
+@mixin card-pad-lr {
+  padding: 0 1.6rem;
+}
+@mixin card-pad-b {
+  padding-bottom: 1.6rem;
+}
+@mixin card-pad-t {
+  padding-top: 1.6rem;
+}
+
+// **********
+// Buttons
+// **********
+
+@mixin button {
+  border: none;
+  // color: var(--text-inverse);
+  // background-color: var(--state-action);
+  // border: 1px solid var(--state-action);
+  font-weight: bold;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--radii-button);
+  padding: 1.6rem 3.2rem;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  @include drop-shadow-default;
+  cursor: pointer;
+  @include no-wrap;
+  @include no-word-break;
+  .icon {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+}
+@mixin button-large {
+  border-radius: var(--radii-button);
+  padding: 1.6rem 3.2rem;
+  font-size: 2rem;
+  line-height: 2.4rem;
+  letter-spacing: 0.18px;
+  .icon {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+}
+@mixin button-medium {
+  border-radius: var(--radii-button);
+  padding: 1rem 1.6rem;
+  line-height: 2.4rem;
+  letter-spacing: 0.16px;
+  .icon {
+    height: 2rem;
+    width: 2rem;
+  }
+  @include devices(tablet) {
+    font-size: 1.6rem;
+    .icon {
+      height: 1.6rem;
+      width: 1.6rem;
+    }
+  }
+}
+@mixin button-small {
+  border-radius: var(--radii-button);
+  padding: 0.6rem 1.6rem;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  letter-spacing: 0.14px;
+  .icon {
+    height: 1.6rem;
+    width: 1.6rem;
+  }
+}
+@mixin button-primary {
+  @include button;
+  color: var(--text-inverse);
+  background: var(--state-action);
+  border: 1px solid var(--state-action);
+  .icon {
+    fill: var(--text-inverse);
+    height: 2.4rem;
+    width: 2.4rem;
+    &.right {
+      margin-left: 0.8rem;
+    }
+    &.left {
+      margin-right: 0.8rem;
+    }
+  }
+  &:hover {
+    background: var(--state-action-hover);
+    border-color: var(--state-action-hover);
+  }
+  &:active,
+  &:focus,
+  &:focus-visible {
+    background: var(--state-action-pressed);
+    border-color: var(--state-action-pressed);
+    outline: 4px solid var(--state-action-pressed);
+    outline-offset: 4px;
+  }
+}
+@mixin button-secondary {
+  @include button;
+  color: var(--text-inverse);
+  background: var(--text-cta-primary);
+  border: 1px solid var(--text-cta-primary);
+  svg {
+    fill: var(--text-inverse);
+  }
+  &:hover {
+    background: var(--text-cta-primary-hover);
+    border-color: var(--text-cta-primary-hover);
+  }
+  &:active,
+  &:focus,
+  &:focus-visible {
+    background: var(--text-cta-primary-pressed);
+    border-color: var(--text-cta-primary-pressed);
+    outline: 4px solid var(--text-cta-primary-pressed);
+    outline-offset: 4px;
+  }
+}
+@mixin button-tertiary {
+  @include button;
+  color: var(--text-cta-primary);
+  svg {
+    fill: var(--text-cta-primary);
+  }
+  &:hover {
+    color: var(--text-cta-primary-hover);
+    svg {
+      fill: var(--text-cta-primary-hover);
+    }
+  }
+  &:active,
+  &:focus {
+    color: var(--text-cta-primary-hover);
+    svg {
+      fill: var(--text-cta-primary-hover);
+    }
+  }
+  border: none;
+  box-shadow: none;
+}
+@mixin button-disabled {
+  @include button;
+  color: var(--color-gray-200);
+  background-color: var(--state-action-disabled);
+  border: 1px solid var(--state-action-disabled);
+  cursor: default;
+  svg {
+    fill: var(--text-tertiary);
+  }
+  &:hover {
+    background-color: var(--state-action-disabled);
+    border: 1px solid var(--state-action-disabled);
+  }
+  &:active,
+  &:focus {
+    background-color: var(--state-action-disabled);
+  }
+  &.primary,
+  &.secondary {
+    color: var(--color-gray-200);
+    background-color: var(--state-action-disabled);
+    border: 1px solid var(--state-action-disabled);
+    cursor: default;
+  }
+  svg {
+    fill: var(--text-tertiary);
+  }
+  &:active,
+  &:focus,
+  &:focus-visible {
+    outline: none;
+    outline-offset: 4px;
+  }
+}
+@mixin button-warning {
+  @include button;
+  color: var(--text-inverse);
+  background-color: var(--fill-error);
+  border: 1px solid var(--fill-error);
+  cursor: default;
+  svg {
+    fill: var(--text-inverse);
+  }
+  &:hover {
+    background-color: var(--state-error-hover);
+    border: 1px solid var(--state-error-hover);
+  }
+  &:active,
+  &:focus {
+    background-color: var(--state-error-pressed);
+    border: 1px solid var(--state-error-pressed);
+  }
+}
+@mixin button-round {
+  @include button;
+  @include flex-column;
+  @include flex-center;
+  padding: 0;
+  width: 3.3rem;
+  height: 3.3rem;
+  gap: 1.2rem;
+  background-color: var(--text-inverse);
+  border: 1px solid var(--text-inverse);
+  .icon {
+    width: 2.4rem;
+    height: 2.4rem;
+    fill: var(--fill-cta-primary);
+  }
+  &:hover {
+    color: var(--state-action-hover);
+    svg {
+      fill: var(--state-action-hover);
+    }
+  }
+  &:active,
+  &:focus {
+    color: var(--state-action-pressed);
+    svg {
+      fill: var(--state-action-pressed);
+    }
+  }
+}
+@mixin button-link {
+  @include inline-flex;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 3.2rem;
+  margin: 0;
+  padding-right: 0.8rem;
+  padding-left: 0.8rem;
+}
+
+// **********
+// Borders
+// **********
+
+@mixin border(
+  $border-width: 1px,
+  $border-style: solid,
+  $border-color: var(--border-divider)
+) {
+  border: $border-width $border-style $border-color;
+}
+@mixin border-top(
+  $border-width: 1px,
+  $border-style: solid,
+  $border-color: var(--border-divider)
+) {
+  border-top: $border-width $border-style $border-color;
+}
+@mixin border-bottom(
+  $border-width: 1px,
+  $border-style: solid,
+  $border-color: var(--border-divider)
+) {
+  border-bottom: $border-width $border-style $border-color;
+}
+@mixin border-left(
+  $border-width: 1px,
+  $border-style: solid,
+  $border-color: var(--border-divider)
+) {
+  border-left: $border-width $border-style $border-color;
+}
+@mixin border-right(
+  $border-width: 1px,
+  $border-style: solid,
+  $border-color: var(--border-divider)
+) {
+  border-right: $border-width $border-style $border-color;
+}
+
+@mixin border-dark(
+  $border-width: 1px,
+  $border-style: solid,
+  $border-color: var(--color-gray-700)
+) {
+  border: $border-width $border-style $border-color;
+}
+@mixin border-top-dark(
+  $border-width: 1px,
+  $border-style: solid,
+  $border-color: var(--color-gray-700)
+) {
+  border-top: $border-width $border-style $border-color;
+}
+@mixin border-bottom-dark(
+  $border-width: 1px,
+  $border-style: solid,
+  $border-color: var(--color-gray-700)
+) {
+  border-bottom: $border-width $border-style $border-color;
+}
+@mixin border-left-dark(
+  $border-width: 1px,
+  $border-style: solid,
+  $border-color: var(--color-gray-700)
+) {
+  border-left: $border-width $border-style $border-color;
+}
+@mixin border-right-dark(
+  $border-width: 1px,
+  $border-style: solid,
+  $border-color: var(--color-gray-700)
+) {
+  border-right: $border-width $border-style $border-color;
+}
+
+// **********
+// User Select
+// **********
+
+@mixin user-select($userselect: none) {
+  user-select: $userselect;
+  -webkit-user-select: $userselect;
+  -moz-user-select: $userselect;
+  -ms-user-select: $userselect;
+}
+
+// **********
+// Transitions
+// **********
+
+@mixin transition($transition...) {
+  -moz-transition: $transition;
+  -o-transition: $transition;
+  -webkit-transition: $transition;
+  transition: $transition;
+}
+@mixin transition-property($property...) {
+  -moz-transition-property: $property;
+  -o-transition-property: $property;
+  -webkit-transition-property: $property;
+  transition-property: $property;
+}
+@mixin transition-duration($duration...) {
+  -moz-transition-property: $duration;
+  -o-transition-property: $duration;
+  -webkit-transition-property: $duration;
+  transition-property: $duration;
+}
+@mixin transition-timing-function($timing...) {
+  -moz-transition-timing-function: $timing;
+  -o-transition-timing-function: $timing;
+  -webkit-transition-timing-function: $timing;
+  transition-timing-function: $timing;
+}
+@mixin transition-delay($delay...) {
+  -moz-transition-delay: $delay;
+  -o-transition-delay: $delay;
+  -webkit-transition-delay: $delay;
+  transition-delay: $delay;
+}
+
+//usage: @include shift([property],[duration],[easing]);
+@mixin transitionshift($property: all, $duration: 0.3s, $ease: linear) {
+  -webkit-transition: $property $duration $ease;
+  -moz-transition: $property $duration $ease;
+  -o-transition: $property $duration $ease;
+  transition: $property $duration $ease;
+}
+
+// **********
+// Opacity
+// **********
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  // filter: alpha(opacity=$opacity-ie); //IE8
+  // usage @include opacity(0.8);
+}
+
+// **********
+// Spinner
+// **********
+
+@mixin spinner {
+  @include flex-center;
+  width: 8rem;
+  height: 8rem;
+  &:after {
+    content: ' ';
+    display: block;
+    width: 6.8rem;
+    height: 6.8rem;
+    margin: 0.8rem;
+    border-radius: 50%;
+    border: 0.6rem solid var(--state-action);
+    border-color: var(--state-action) transparent var(--state-action)
+      transparent;
+    animation: spinner 1.2s linear infinite;
+  }
+}
+
+// **********
+// Clear Fix
+// **********
+
+@mixin clearfix() {
+  *zoom: 1;
+  &:before,
+  &:after {
+    content: '';
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+  // usage @include clearfix();
+}
+
+%visuallyhidden {
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  position: absolute;
+  // @extend %visuallyhidden;
+}
+
+// **********
+// Input
+// **********
+
+@mixin form-control {
+  font-weight: bold;
+  margin: 1rem 0;
+  @include flex-column;
+  align-items: stretch;
+  label {
+    display: block;
+    font-weight: bold;
+    flex: 1;
+    margin-bottom: 0.5rem;
+  }
+}
+
+@mixin form-control-invalid {
+  @include form-control;
+  @include invalid-input;
+}
+
+@mixin input {
+  @include flex;
+  transition: all 0.2s ease 0s;
+  outline: transparent solid 4px;
+  outline-offset: 2px;
+  font-weight: 400;
+  font-family: inherit;
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+  padding: 1.6rem;
+  align-items: center;
+  @include rounded;
+  border: 1px solid var(--border-divider);
+  border-style: inset;
+  text-align: left;
+  // background: var(--fill-white);
+  //   letter-spacing: var(--spacing);
+  &.medium {
+    // pairs well with button medium when side by side
+    line-height: 1.8rem;
+    padding: 1.2rem 1.6rem;
+  }
+  &::placeholder {
+    color: var(--text-tertiary);
+  }
+  &:hover {
+    border: 1px solid var(--state-action-hover);
+  }
+  &:active,
+  &:focus,
+  &:focus-visible {
+    border: 1px solid var(--state-action-pressed);
+    outline: 4px solid var(--state-action-pressed);
+    outline-offset: 4px;
+    &::placeholder {
+      color: transparent;
+      &:after {
+        content: '';
+      }
+    }
+    &:after {
+      &::placeholder {
+        color: transparent;
+        content: '';
+      }
+    }
+  }
+  &.error {
+    border: 1px solid var(--text-error);
+    color: var(--text-primary);
+    background-color: var(--color-red-100);
+    &::placeholder {
+      color: var(--text-primary);
+    }
+  }
+}
+@mixin invalid-input {
+  // label {
+  //   // color: $error-color;
+  // }
+  input {
+    outline: none;
+    // @include border($border-color: $error-color !important);
+    // background: $form-input-color-invalid !important;
+    // &:focus {
+    //   @include border(
+    //     $border-color: $form-input-color-invalid-focus-border !important
+    //   );
+    //   background-color: $form-input-color-invalid-focus !important;
+    // }
+  }
+}

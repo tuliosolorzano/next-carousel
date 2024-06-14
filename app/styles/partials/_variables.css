@@ -1,0 +1,26 @@
+:root {
+  /* screen sizes */
+  --screens-sm: '640px';
+  --screens-md: '768px';
+  --screens-lg: '1024px';
+  --screens-xl: '1280px';
+  --screens-2xl: '1536px';
+  /* fills */
+  --color-white: #fff;
+  --color-gray-900: #0f172a;
+  --fill-white: var(--color-white);
+  --fill-dark: var(--color-gray-900);
+  --text-primary: var(--color-gray-900);
+  --text-inverse: var(--color-white);
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
