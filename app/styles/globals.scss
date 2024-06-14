@@ -9,7 +9,7 @@ body {
 
 header {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   background: var(--fill-white);
   height: 8rem;
   min-height: 8rem;
@@ -27,7 +27,6 @@ header {
     padding: 0 0.04rem;
     margin: 0 auto;
     height: 8rem;
-
     align-items: center;
     max-width: 124.8rem;
   }
@@ -37,12 +36,14 @@ main {
   display: flex;
   flex-direction: column;
   margin: 0;
-  min-height: calc(100vh - 8rem - 8rem);
+  min-height: calc(100vh - 8rem - 6.5rem);
 }
 
 footer {
+  display: flex;
+  flex-direction: row;
   padding: 2rem 0;
-  border-top: 1px solid rgba(14, 14, 14, 5%);
+  border-top: 1px solid #eaeff3;
   .footer-content {
     display: flex;
     flex-direction: row;

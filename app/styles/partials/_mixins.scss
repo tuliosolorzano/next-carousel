@@ -1,30 +1,3 @@
-// $themes: (
-//   light: (
-//     text: var(--text-primary),
-//     bg: var(--fill-white),
-//     brand: #567567,
-//     border: var(--color-gray-300),
-//   ),
-//   dark: (
-//     text: var(--text-inverse),
-//     bg: var(--fill-dark),
-//     brand: #abcabc,
-//     border: var(--color-gray-700),
-//   ),
-// );
-
-// @mixin themify($themes) {
-//   @each $name, $values in $themes {
-//     .#{$name} {
-//       $theme-map: $values !global;
-//       @content;
-//     }
-//   }
-// }
-// @function themed($key) {
-//   @return map-get($theme-map, $key);
-// }
-
 @mixin calc($property, $expression) {
   #{$property}: -moz-calc(#{$expression});
   #{$property}: -webkit-calc(#{$expression});
