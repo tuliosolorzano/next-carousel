@@ -116,10 +116,12 @@ meter {
   /* fills */
   --color-white: #fff;
   --color-gray-900: #0f172a;
+  --color-light-blue: #929a9f;
   --fill-white: var(--color-white);
   --fill-dark: var(--color-gray-900);
   --text-primary: var(--color-gray-900);
   --text-inverse: var(--color-white);
+  --text-light-blue: var(--color-light-blue);
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -145,10 +147,12 @@ meter {
   /* fills */
   --color-white: #fff;
   --color-gray-900: #0f172a;
+  --color-light-blue: #929a9f;
   --fill-white: var(--color-white);
   --fill-dark: var(--color-gray-900);
   --text-primary: var(--color-gray-900);
   --text-inverse: var(--color-white);
+  --text-light-blue: var(--color-light-blue);
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -1164,10 +1168,14 @@ main {
 }
 
 footer {
+  width: 100%;
+  margin-top: auto;
   display: flex;
   flex-direction: row;
   padding: 2rem 0;
   border-top: 1px solid #eaeff3;
+  background: var(--fill-white);
+  z-index: 3;
 }
 
 footer .footer-content {
