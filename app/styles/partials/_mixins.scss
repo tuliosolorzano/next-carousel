@@ -366,24 +366,20 @@
 
 @mixin button {
   border: none;
-  // color: var(--text-inverse);
-  // background-color: var(--state-action);
-  // border: 1px solid var(--state-action);
-  font-weight: bold;
+  font-weight: 700;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   border-radius: var(--radii-button);
-  padding: 1.6rem 3.2rem;
+  padding: 0.4rem 2.5rem;
   font-size: 1.6rem;
-  line-height: 2.4rem;
-  @include drop-shadow-default;
+  line-height: 4rem;
   cursor: pointer;
   @include no-wrap;
   @include no-word-break;
   .icon {
-    width: 2.4rem;
-    height: 2.4rem;
+    width: 1.6rem;
+    height: 1.6rem;
   }
 }
 @mixin button-large {
@@ -415,11 +411,6 @@
   }
 }
 @mixin button-small {
-  border-radius: var(--radii-button);
-  padding: 0.6rem 1.6rem;
-  font-size: 1.4rem;
-  line-height: 2rem;
-  letter-spacing: 0.14px;
   .icon {
     height: 1.6rem;
     width: 1.6rem;
@@ -429,7 +420,6 @@
   @include button;
   color: var(--text-inverse);
   background: var(--state-action);
-  border: 1px solid var(--state-action);
   .icon {
     fill: var(--text-inverse);
     height: 2.4rem;
@@ -450,15 +440,14 @@
   &:focus-visible {
     background: var(--state-action-pressed);
     border-color: var(--state-action-pressed);
-    outline: 4px solid var(--state-action-pressed);
-    outline-offset: 4px;
+    // outline: 4px solid var(--state-action-pressed);
+    // outline-offset: 4px;
   }
 }
 @mixin button-secondary {
   @include button;
   color: var(--text-inverse);
   background: var(--text-cta-primary);
-  border: 1px solid var(--text-cta-primary);
   svg {
     fill: var(--text-inverse);
   }

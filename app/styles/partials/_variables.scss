@@ -12,6 +12,7 @@
 
   /* fills */
   --color-white: #fff; // rgb(255, 255, 255);
+  --color-orange: #ff9900;
   --color-gray-900: #0f172a; // rgb(15,23,42)
   --color-light-blue: #929a9f;
   --fill-white: var(--color-white);
@@ -23,6 +24,11 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --state-action: var(--color-orange);
+  --state-action-hover: var(--color-orange);
+  --state-action-pressed: var(--color-orange);
+
+  --radii-button: 4.8rem;
 }
 
 @media (prefers-color-scheme: dark) {

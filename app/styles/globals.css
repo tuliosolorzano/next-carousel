@@ -115,6 +115,7 @@ meter {
   --screens-2xl: '1536px';
   /* fills */
   --color-white: #fff;
+  --color-orange: #ff9900;
   --color-gray-900: #0f172a;
   --color-light-blue: #929a9f;
   --fill-white: var(--color-white);
@@ -125,6 +126,10 @@ meter {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --state-action: var(--color-orange);
+  --state-action-hover: var(--color-orange);
+  --state-action-pressed: var(--color-orange);
+  --radii-button: 4.8rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -146,6 +151,7 @@ meter {
   --screens-2xl: '1536px';
   /* fills */
   --color-white: #fff;
+  --color-orange: #ff9900;
   --color-gray-900: #0f172a;
   --color-light-blue: #929a9f;
   --fill-white: var(--color-white);
@@ -156,6 +162,10 @@ meter {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --state-action: var(--color-orange);
+  --state-action-hover: var(--color-orange);
+  --state-action-pressed: var(--color-orange);
+  --radii-button: 4.8rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -1164,7 +1174,7 @@ main {
   display: flex;
   flex-direction: column;
   margin: 0;
-  min-height: calc(100vh - 8rem - 6.5rem);
+  min-height: unset;
 }
 
 footer {
@@ -1186,4 +1196,223 @@ footer .footer-content {
   margin: 0 auto;
   align-items: center;
   max-width: 124.8rem;
+}
+
+.button {
+  border: none;
+  font-weight: 700;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--radii-button);
+  padding: 0.4rem 2.5rem;
+  font-size: 1.6rem;
+  line-height: 4rem;
+  cursor: pointer;
+  white-space: nowrap;
+  word-break: keep-all;
+}
+
+.button .icon {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.button.primary {
+  border: none;
+  font-weight: 700;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--radii-button);
+  padding: 0.4rem 2.5rem;
+  font-size: 1.6rem;
+  line-height: 4rem;
+  cursor: pointer;
+  white-space: nowrap;
+  word-break: keep-all;
+  color: var(--text-inverse);
+  background: var(--state-action);
+}
+
+.button.primary .icon {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.button.primary .icon {
+  fill: var(--text-inverse);
+  height: 2.4rem;
+  width: 2.4rem;
+}
+
+.button.primary .icon.right {
+  margin-left: 0.8rem;
+}
+
+.button.primary .icon.left {
+  margin-right: 0.8rem;
+}
+
+.button.primary:hover {
+  background: var(--state-action-hover);
+  border-color: var(--state-action-hover);
+}
+
+.button.primary:active, .button.primary:focus, .button.primary:focus-visible {
+  background: var(--state-action-pressed);
+  border-color: var(--state-action-pressed);
+}
+
+.button.primary.hide {
+  display: none;
+}
+
+.button.secondary {
+  border: none;
+  font-weight: 700;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--radii-button);
+  padding: 0.4rem 2.5rem;
+  font-size: 1.6rem;
+  line-height: 4rem;
+  cursor: pointer;
+  white-space: nowrap;
+  word-break: keep-all;
+  color: var(--text-inverse);
+  background: var(--text-cta-primary);
+}
+
+.button.secondary .icon {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.button.secondary svg {
+  fill: var(--text-inverse);
+}
+
+.button.secondary:hover {
+  background: var(--text-cta-primary-hover);
+  border-color: var(--text-cta-primary-hover);
+}
+
+.button.secondary:active, .button.secondary:focus, .button.secondary:focus-visible {
+  background: var(--text-cta-primary-pressed);
+  border-color: var(--text-cta-primary-pressed);
+  outline: 4px solid var(--text-cta-primary-pressed);
+  outline-offset: 4px;
+}
+
+.button.secondary.hide {
+  display: none;
+}
+
+.button.tertiary {
+  border: none;
+  font-weight: 700;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--radii-button);
+  padding: 0.4rem 2.5rem;
+  font-size: 1.6rem;
+  line-height: 4rem;
+  cursor: pointer;
+  white-space: nowrap;
+  word-break: keep-all;
+  color: var(--text-cta-primary);
+  border: none;
+  box-shadow: none;
+}
+
+.button.tertiary .icon {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.button.tertiary svg {
+  fill: var(--text-cta-primary);
+}
+
+.button.tertiary:hover {
+  color: var(--text-cta-primary-hover);
+}
+
+.button.tertiary:hover svg {
+  fill: var(--text-cta-primary-hover);
+}
+
+.button.tertiary:active, .button.tertiary:focus {
+  color: var(--text-cta-primary-hover);
+}
+
+.button.tertiary:active svg, .button.tertiary:focus svg {
+  fill: var(--text-cta-primary-hover);
+}
+
+.button.tertiary.hide {
+  display: none;
+}
+
+.button.large {
+  border-radius: var(--radii-button);
+  padding: 1.6rem 3.2rem;
+  font-size: 2rem;
+  line-height: 2.4rem;
+  letter-spacing: 0.18px;
+}
+
+.button.large .icon {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.button.large.hide {
+  display: none;
+}
+
+.button.medium {
+  border-radius: var(--radii-button);
+  padding: 1rem 1.6rem;
+  line-height: 2.4rem;
+  letter-spacing: 0.16px;
+}
+
+.button.medium .icon {
+  height: 2rem;
+  width: 2rem;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .button.medium {
+    font-size: 1.6rem;
+  }
+  .button.medium .icon {
+    height: 1.6rem;
+    width: 1.6rem;
+  }
+}
+
+.button.medium.hide {
+  display: none;
+}
+
+.button.small .icon {
+  height: 1.6rem;
+  width: 1.6rem;
+}
+
+.button.small.hide {
+  display: none;
+}
+
+.gap-3 {
+  gap: 3rem;
+}
+
+.mar-30-b {
+  margin-bottom: 3rem;
 }
