@@ -141,6 +141,7 @@ const ControlsContainer = styled.div`
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   gap: 10px;
 `;
 
@@ -152,7 +153,7 @@ const Indicator = styled.div<IndicatorProps>`
   position: relative;
   overflow: hidden;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 `;
 
