@@ -2,6 +2,9 @@
 
 import { useState, useEffect, useRef } from 'react';
 import styled, { keyframes, css } from 'styled-components';
+import { ButtonLink } from '@/app/components-ui';
+import { IconChevronRight } from '@/app/components-icons';
+import { CarouselData } from '@/app/data';
 
 interface CarouselItemProps {
   active: boolean;
@@ -45,6 +48,8 @@ const CarouselInner = styled.div`
   flex-direction: column;
   margin: 0 auto;
   width: calc(100% - 460px); /* Default width */
+  height: 100%;
+  max-height: 530px; /* Set maximum height */
   @media (max-width: 768px) {
     width: calc(100% - 20px); /* Adjust width for small devices */
   }
@@ -64,12 +69,13 @@ const CarouselItem = styled.div<CarouselItemProps>`
 `;
 
 const CarouselContent = styled.div`
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  flex: 1;
+  flex: 1; */
   padding: 0;
   margin-top: 10.4rem;
-  gap: 1.5rem;
+  margin-right: 3rem;
+  /* gap: 3rem; */
   max-height: 530px; /* Set maximum height */
 `;
 
@@ -135,6 +141,7 @@ const ControlsContainer = styled.div`
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   gap: 10px;
 `;
 
@@ -146,7 +153,7 @@ const Indicator = styled.div<IndicatorProps>`
   position: relative;
   overflow: hidden;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 `;
 
@@ -203,52 +210,13 @@ const PlayPauseButton = styled.button`
   color: #d9d9d9;
 `;
 
-const images = [
-  {
-    carouselId: '01',
-    carouselTitle: 'Lorem ipsum dolor 1',
-    carouselHeading: 'Lorem ipsum dolor sit amet, est mollis evertitur ut 1',
-    carouselText:
-      'Lorem ipsum dolor sit amet, est mollis evertitur ut, clita utinam quaeque ad sed, an legere concludaturque eum. Duo omnis solet dissentiet te, ea sed quis erat reprehendunt, cetero consetetur philosophia mel in. 1',
-    carouselImages: {
-      activeImage: 'https://tuliosol.com/images/next-carousel/img-01.png',
-      inactiveImage1: 'https://tuliosol.com/images/next-carousel/img-02.png',
-      inactiveImage2: 'https://tuliosol.com/images/next-carousel/img-03.png',
-    },
-  },
-  {
-    carouselId: '02',
-    carouselTitle: 'Lorem ipsum dolor 2',
-    carouselHeading: 'Lorem ipsum dolor sit amet, est mollis evertitur ut 2',
-    carouselText:
-      'Lorem ipsum dolor sit amet, est mollis evertitur ut, clita utinam quaeque ad sed, an legere concludaturque eum. Duo omnis solet dissentiet te, ea sed quis erat reprehendunt, cetero consetetur philosophia mel in. 2',
-    carouselImages: {
-      activeImage: 'https://tuliosol.com/images/next-carousel/img-02.png',
-      inactiveImage1: 'https://tuliosol.com/images/next-carousel/img-03.png',
-      inactiveImage2: 'https://tuliosol.com/images/next-carousel/img-01.png',
-    },
-  },
-  {
-    carouselId: '03',
-    carouselTitle: 'Lorem ipsum dolor 3',
-    carouselHeading: 'Lorem ipsum dolor sit amet, est mollis evertitur ut 3',
-    carouselText:
-      'Lorem ipsum dolor sit amet, est mollis evertitur ut, clita utinam quaeque ad sed, an legere concludaturque eum. Duo omnis solet dissentiet te, ea sed quis erat reprehendunt, cetero consetetur philosophia mel in. 3',
-    carouselImages: {
-      activeImage: 'https://tuliosol.com/images/next-carousel/img-03.png',
-      inactiveImage1: 'https://tuliosol.com/images/next-carousel/img-01.png',
-      inactiveImage2: 'https://tuliosol.com/images/next-carousel/img-02.png',
-    },
-  },
-];
-
 const Carousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [transitioning, setTransitioning] = useState(true);
   const timerRef = useRef<number | undefined>();
 
-  const totalImages = images.length;
+  const totalImages = CarouselData.length;
 
   useEffect(() => {
     if (isPlaying) {
@@ -284,12 +252,24 @@ const Carousel = () => {
   return (
     <CarouselContainer>
       <CarouselInner>
-        {images.map((item, index) => (
+        {CarouselData.map((item, index) => (
           <CarouselItem key={index} active={index === activeIndex}>
             <CarouselContent>
-              <CarouselTitle>{item.carouselTitle}</CarouselTitle>
-              <CarouselHeading>{item.carouselHeading}</CarouselHeading>
-              <CarouselText>{item.carouselText}</CarouselText>
+              <div className='flex-column gap-3 mar-30-b'>
+                <CarouselTitle>{item.carouselTitle}</CarouselTitle>
+                <CarouselHeading>{item.carouselHeading}</CarouselHeading>
+                <CarouselText>{item.carouselText}</CarouselText>
+              </div>
+              <ButtonLink
+                className='button primary small'
+                to={item.ctaInfo.ctaUrl}
+                target={
+                  item.ctaInfo.ctaTarget ? item.ctaInfo.ctaTarget : '_parent'
+                }
+              >
+                {item.ctaInfo.ctaText ? item.ctaInfo.ctaText : 'Learn More'}
+                <IconChevronRight />
+              </ButtonLink>
             </CarouselContent>
             <ImageContainer>
               <ActiveImageContainer>
@@ -306,7 +286,7 @@ const Carousel = () => {
         ))}
       </CarouselInner>
       <ControlsContainer>
-        {images.map((_, index) => (
+        {CarouselData.map((_, index) => (
           <Indicator
             key={index}
             active={index === activeIndex}

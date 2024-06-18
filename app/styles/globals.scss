@@ -2,6 +2,7 @@
 @import './partials/variables';
 @import './partials/mixins';
 @import './layout/layout';
+
 body {
   color: var(--text-primary);
   background: var(--fill-white);
@@ -36,7 +37,8 @@ main {
   display: flex;
   flex-direction: column;
   margin: 0;
-  min-height: calc(100vh - 8rem - 6.5rem);
+  // min-height: calc(100vh - 8rem - 6.5rem);
+  min-height: unset;
 }
 
 footer {
@@ -57,4 +59,52 @@ footer {
     align-items: center;
     max-width: 124.8rem;
   }
+}
+
+.button {
+  @include button;
+  &.primary {
+    @include button-primary;
+    &.hide {
+      display: none;
+    }
+  }
+  &.secondary {
+    @include button-secondary;
+    &.hide {
+      display: none;
+    }
+  }
+  &.tertiary {
+    @include button-tertiary;
+    &.hide {
+      display: none;
+    }
+  }
+  &.large {
+    @include button-large;
+    &.hide {
+      display: none;
+    }
+  }
+  &.medium {
+    @include button-medium;
+    &.hide {
+      display: none;
+    }
+  }
+  &.small {
+    @include button-small;
+    &.hide {
+      display: none;
+    }
+  }
+}
+
+.gap-3 {
+  gap: 3rem;
+}
+
+.mar-30-b {
+  margin-bottom: 3rem;
 }
