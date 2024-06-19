@@ -4,11 +4,6 @@ import { useState, useEffect, useRef } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import { ButtonLink } from '@/app/components-ui';
 import { IconChevronRight } from '@/app/components-icons';
-import { CarouselData } from '@/app/data';
-
-interface CarouselItemProps {
-  active: boolean;
-}
 
 interface IndicatorProps {
   active: boolean;
@@ -18,11 +13,15 @@ interface ProgressBarProps {
   active: boolean;
 }
 
+interface ImageContainerProps {
+  active: boolean;
+}
+
 const CarouselContainer = styled.div`
   position: relative;
   overflow: hidden;
   margin: 15.8rem auto; /* Center the carousel and set top and bottom margins */
-  max-height: 530px; /* Set maximum height */
+  min-height: 530px; /* Set maximum height */
 `;
 
 const fadeIn = keyframes`
@@ -45,38 +44,23 @@ const fadeOut = keyframes`
 
 const CarouselInner = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin: 0 auto;
   width: calc(100% - 460px); /* Default width */
   height: 100%;
-  max-height: 530px; /* Set maximum height */
+  min-height: 530px; /* Set maximum height */
   @media (max-width: 768px) {
     width: calc(100% - 20px); /* Adjust width for small devices */
   }
 `;
 
-const CarouselItem = styled.div<CarouselItemProps>`
-  display: ${(props) => (props.active ? 'flex' : 'none')};
-  min-width: 100%;
-  animation: ${(props) =>
-    props.active
-      ? css`
-          ${fadeIn} 0.5s forwards
-        `
-      : css`
-          ${fadeOut} 0.5s forwards
-        `};
-`;
-
 const CarouselContent = styled.div`
-  /* display: flex;
+  display: flex;
   flex-direction: column;
-  flex: 1; */
+  flex: 1;
   padding: 0;
   margin-top: 10.4rem;
   margin-right: 3rem;
-  /* gap: 3rem; */
-  max-height: 530px; /* Set maximum height */
 `;
 
 const CarouselTitle = styled.h3`
@@ -101,37 +85,69 @@ const CarouselText = styled.p`
   color: #929a9f;
 `;
 
-const ImageContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 15px; /* Add gap between images */
-  max-height: 530px; /* Set maximum height */
+const CarouselImages = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   max-width: 518px; /* Set maximum width */
 `;
 
-const ActiveImageContainer = styled.div`
-  grid-row: 1 / 3; /* Span two rows */
-  z-index: 2;
-  height: 100%;
-`;
-
-const InactiveImageContainer = styled.div`
-  z-index: 1;
-  height: 100%;
+const ImageContainer = styled.div<ImageContainerProps>`
+  display: ${(props) => (props.active ? 'grid' : 'none')};
+  position: relative;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 15px; /* Add gap between images */
+  height: 530px; /* Set maximum height */
+  max-width: 518px; /* Set maximum width */
+  animation: ${(props) =>
+    props.active
+      ? css`
+          ${fadeIn} 0.5s forwards
+        `
+      : css`
+          ${fadeOut} 0.5s forwards
+        `};
 `;
 
 const ActiveImage = styled.img`
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  justify-self: center;
+  align-self: center;
   width: 100%;
+  max-width: 28rem;
   height: 100%;
-  object-fit: contain;
+  object-fit: scale-down;
+  z-index: 2;
 `;
 
 const InactiveImage = styled.img`
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  justify-self: center;
+  align-self: start;
   width: 100%;
+  max-width: 28rem;
   height: 100%;
-  object-fit: contain;
+  object-fit: scale-down;
   opacity: 0.3;
+  z-index: 0;
+`;
+
+const InactiveImage2 = styled.img`
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  justify-self: center;
+  align-self: end;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  max-width: 28rem;
+  height: 100%;
+  object-fit: scale-down;
+  opacity: 0.3;
+  z-index: 1;
 `;
 
 const ControlsContainer = styled.div`
@@ -210,10 +226,36 @@ const PlayPauseButton = styled.button`
   color: #d9d9d9;
 `;
 
+const CarouselData = [
+  {
+    carouselId: '01',
+    carouselImages: {
+      activeImage: 'https://tuliosol.com/images/next-carousel/img-01.png',
+      inactiveImage1: 'https://tuliosol.com/images/next-carousel/img-02.png',
+      inactiveImage2: 'https://tuliosol.com/images/next-carousel/img-03.png',
+    },
+  },
+  {
+    carouselId: '02',
+    carouselImages: {
+      activeImage: 'https://tuliosol.com/images/next-carousel/img-02.png',
+      inactiveImage1: 'https://tuliosol.com/images/next-carousel/img-03.png',
+      inactiveImage2: 'https://tuliosol.com/images/next-carousel/img-01.png',
+    },
+  },
+  {
+    carouselId: '03',
+    carouselImages: {
+      activeImage: 'https://tuliosol.com/images/next-carousel/img-03.png',
+      inactiveImage1: 'https://tuliosol.com/images/next-carousel/img-01.png',
+      inactiveImage2: 'https://tuliosol.com/images/next-carousel/img-02.png',
+    },
+  },
+];
+
 const Carousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [transitioning, setTransitioning] = useState(true);
   const timerRef = useRef<number | undefined>();
 
   const totalImages = CarouselData.length;
@@ -249,41 +291,34 @@ const Carousel = () => {
     setActiveIndex(index);
   };
 
+  const Title = 'Lorem ipsum dolor';
+  const Heading = 'Lorem ipsum dolor sit amet, est mollis evertitur ut';
+  const Copy =
+    'Lorem ipsum dolor sit amet, est mollis evertitur ut, clita utinam quaeque ad sed, an legere concludaturque eum. Duo omnis solet dissentiet te, ea sed quis erat reprehendunt, cetero consetetur philosophia mel in.';
+  const CTACopy = 'Learn More';
+
   return (
     <CarouselContainer>
       <CarouselInner>
-        {CarouselData.map((item, index) => (
-          <CarouselItem key={index} active={index === activeIndex}>
-            <CarouselContent>
-              <div className='flex-column gap-3 mar-30-b'>
-                <CarouselTitle>{item.carouselTitle}</CarouselTitle>
-                <CarouselHeading>{item.carouselHeading}</CarouselHeading>
-                <CarouselText>{item.carouselText}</CarouselText>
-              </div>
-              <ButtonLink
-                className='button primary small'
-                to={item.ctaInfo.ctaUrl}
-                target={
-                  item.ctaInfo.ctaTarget ? item.ctaInfo.ctaTarget : '_parent'
-                }
-              >
-                {item.ctaInfo.ctaText ? item.ctaInfo.ctaText : 'Learn More'}
-                <IconChevronRight />
-              </ButtonLink>
-            </CarouselContent>
-            <ImageContainer>
-              <ActiveImageContainer>
-                <ActiveImage src={item.carouselImages.activeImage} />
-              </ActiveImageContainer>
-              <InactiveImageContainer>
-                <InactiveImage src={item.carouselImages.inactiveImage1} />
-              </InactiveImageContainer>
-              <InactiveImageContainer>
-                <InactiveImage src={item.carouselImages.inactiveImage2} />
-              </InactiveImageContainer>
+        <CarouselContent>
+          <div className='flex-column gap-3 mar-30-b'>
+            <CarouselTitle>{Title}</CarouselTitle>
+            <CarouselHeading>{Heading}</CarouselHeading>
+            <CarouselText>{Copy}</CarouselText>
+          </div>
+          <ButtonLink className='button primary small' to='/' target='_patent'>
+            {CTACopy} <IconChevronRight />
+          </ButtonLink>
+        </CarouselContent>
+        <CarouselImages>
+          {CarouselData.map((item, index) => (
+            <ImageContainer key={index} active={index === activeIndex}>
+              <ActiveImage src={item.carouselImages.activeImage} />
+              <InactiveImage src={item.carouselImages.inactiveImage1} />
+              <InactiveImage2 src={item.carouselImages.inactiveImage2} />
             </ImageContainer>
-          </CarouselItem>
-        ))}
+          ))}
+        </CarouselImages>
       </CarouselInner>
       <ControlsContainer>
         {CarouselData.map((_, index) => (
