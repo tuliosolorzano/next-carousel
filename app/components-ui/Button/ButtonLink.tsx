@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { IconChevronRight } from '@/app/components-icons';
+import { IconArrowRight } from '@/app/components-icons';
 const ButtonLink = ({
   children,
   className,
@@ -10,12 +12,11 @@ const ButtonLink = ({
   target: any;
   to: any;
 }) => {
-  // Base Class: button
-  // Available Button Display Classes: primary, secondary, tertiary
-  // Available Button Size Classes: large, medium, small
   return (
     <Link className={className} href={to} target={target}>
       {children}
+      <IconChevronRight className='chevron' />
+      <IconArrowRight className='arrow' />
     </Link>
   );
 };

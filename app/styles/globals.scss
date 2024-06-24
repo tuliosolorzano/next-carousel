@@ -101,6 +101,37 @@ footer {
   }
 }
 
+.icon-link {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  .icon-chevron-right,
+  .icon-arrow-right {
+    transition: opacity 0.3s ease-in-out;
+    position: relative;
+    margin-left: 1rem;
+  }
+  .icon-chevron-right {
+    opacity: 1;
+    display: inline-block;
+  }
+
+  .icon-arrow-right {
+    opacity: 0;
+    display: none;
+  }
+  &:hover {
+    .icon-chevron-right {
+      opacity: 0;
+      display: none;
+    }
+    .icon-arrow-right {
+      opacity: 1;
+      display: inline-block;
+    }
+  }
+}
+
 .gap-3 {
   gap: 3rem;
 }

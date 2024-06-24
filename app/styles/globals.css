@@ -116,6 +116,7 @@ meter {
   /* fills */
   --color-white: #fff;
   --color-orange: #ff9900;
+  --color-orange-hover: #de8500;
   --color-gray-900: #0f172a;
   --color-light-blue: #929a9f;
   --fill-white: var(--color-white);
@@ -127,8 +128,8 @@ meter {
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
   --state-action: var(--color-orange);
-  --state-action-hover: var(--color-orange);
-  --state-action-pressed: var(--color-orange);
+  --state-action-hover: var(--color-orange-hover);
+  --state-action-pressed: var(--color-orange-hover);
   --radii-button: 4.8rem;
 }
 
@@ -152,6 +153,7 @@ meter {
   /* fills */
   --color-white: #fff;
   --color-orange: #ff9900;
+  --color-orange-hover: #de8500;
   --color-gray-900: #0f172a;
   --color-light-blue: #929a9f;
   --fill-white: var(--color-white);
@@ -163,8 +165,8 @@ meter {
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
   --state-action: var(--color-orange);
-  --state-action-hover: var(--color-orange);
-  --state-action-pressed: var(--color-orange);
+  --state-action-hover: var(--color-orange-hover);
+  --state-action-pressed: var(--color-orange-hover);
   --radii-button: 4.8rem;
 }
 
@@ -1407,6 +1409,39 @@ footer .footer-content {
 
 .button.small.hide {
   display: none;
+}
+
+.icon-link {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.icon-link .icon-chevron-right,
+.icon-link .icon-arrow-right {
+  transition: opacity 0.3s ease-in-out;
+  position: relative;
+  margin-left: 1rem;
+}
+
+.icon-link .icon-chevron-right {
+  opacity: 1;
+  display: inline-block;
+}
+
+.icon-link .icon-arrow-right {
+  opacity: 0;
+  display: none;
+}
+
+.icon-link:hover .icon-chevron-right {
+  opacity: 0;
+  display: none;
+}
+
+.icon-link:hover .icon-arrow-right {
+  opacity: 1;
+  display: inline-block;
 }
 
 .gap-3 {

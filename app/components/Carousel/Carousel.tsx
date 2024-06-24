@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import { ButtonLink } from '@/app/components-ui';
-import { IconChevronRight } from '@/app/components-icons';
 
 interface IndicatorProps {
   active: boolean;
@@ -55,12 +54,14 @@ const CarouselInner = styled.div`
 `;
 
 const CarouselContent = styled.div`
-  display: flex;
   flex-direction: column;
   flex: 1;
   padding: 0;
   margin-top: 10.4rem;
   margin-right: 3rem;
+  /* @media (max-width: 1320px) {
+    margin-top: 10.4rem;
+  } */
 `;
 
 const CarouselTitle = styled.h3`
@@ -306,8 +307,12 @@ const Carousel = () => {
             <CarouselHeading>{Heading}</CarouselHeading>
             <CarouselText>{Copy}</CarouselText>
           </div>
-          <ButtonLink className='button primary small' to='/' target='_patent'>
-            {CTACopy} <IconChevronRight />
+          <ButtonLink
+            className='button primary small icon-link'
+            to='/'
+            target='_patent'
+          >
+            {CTACopy}
           </ButtonLink>
         </CarouselContent>
         <CarouselImages>
