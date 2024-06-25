@@ -15,8 +15,10 @@ const ButtonLink = ({
   return (
     <Link className={className} href={to} target={target}>
       {children}
-      <IconChevronRight className='chevron' />
-      <IconArrowRight className='arrow' />
+      <div className='iconWrapper'>
+        <IconChevronRight />
+        <IconArrowRight />
+      </div>
     </Link>
   );
 };
