@@ -1,25 +1,68 @@
 import React from 'react';
-import { CarouselCopyData } from '@/app/data';
+import styled from 'styled-components';
 import { ButtonLink } from '@/app/components-ui';
 import { IconChevronRight } from '@/app/components-icons';
 
-const CarouselContent = () => {
+const CarouselContentWrapper = styled.div`
+  flex-direction: column;
+  flex: 1;
+  padding: 0;
+  margin-top: 10.4rem;
+  margin-right: 3rem;
+`;
+
+const CarouselTitle = styled.h3`
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  color: #929a9f;
+  text-transform: uppercase;
+`;
+
+const CarouselHeading = styled.h2`
+  font-weight: 700;
+  font-size: 3.2rem;
+  line-height: 4.2rem;
+  color: #263640;
+`;
+
+const CarouselText = styled.p`
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 2.6rem;
+  color: #929a9f;
+`;
+
+interface CarouselContentProps {
+  title: string;
+  heading: string;
+  text: string;
+  ctaText: string;
+  ctaLink: string;
+}
+
+const CarouselContent: React.FC<CarouselContentProps> = ({
+  title,
+  heading,
+  text,
+  ctaText,
+  ctaLink,
+}) => {
   return (
-    <div className='carousel-content'>
+    <CarouselContentWrapper>
       <div className='flex-column gap-3 mar-30-b'>
-        <h3>Lorem ipsum dolor</h3>
-        <h2>Lorem ipsum dolor sit amet, est mollis evertitur ut</h2>
-        <p>
-          Lorem ipsum dolor sit amet, est mollis evertitur ut, clita utinam
-          quaeque ad sed, an legere concludaturque eum. Duo omnis solet
-          dissentiet te, ea sed quis erat reprehendunt, cetero consetetur
-          philosophia mel in.
-        </p>
+        <CarouselTitle>{title}</CarouselTitle>
+        <CarouselHeading>{heading}</CarouselHeading>
+        <CarouselText>{text}</CarouselText>
       </div>
-      <ButtonLink className='button primary small' to='/' target='_patent'>
-        Learn More <IconChevronRight />
+      <ButtonLink
+        className='button primary small icon-link'
+        to={ctaLink}
+        target='_patent'
+      >
+        {ctaText} <IconChevronRight />
       </ButtonLink>
-    </div>
+    </CarouselContentWrapper>
   );
 };
 
