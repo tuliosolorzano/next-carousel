@@ -39,6 +39,7 @@ interface CarouselContentProps {
   text: string;
   ctaText: string;
   ctaLink: string;
+  ctaTarget: string;
 }
 
 const CarouselContent: React.FC<CarouselContentProps> = ({
@@ -47,6 +48,7 @@ const CarouselContent: React.FC<CarouselContentProps> = ({
   text,
   ctaText,
   ctaLink,
+  ctaTarget,
 }) => {
   return (
     <CarouselContentWrapper>
@@ -58,9 +60,9 @@ const CarouselContent: React.FC<CarouselContentProps> = ({
       <ButtonLink
         className='button primary small icon-link'
         to={ctaLink}
-        target='_patent'
+        target={ctaTarget}
       >
-        {ctaText} <IconChevronRight />
+        {ctaText}
       </ButtonLink>
     </CarouselContentWrapper>
   );

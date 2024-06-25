@@ -1417,31 +1417,31 @@ footer .footer-content {
   position: relative;
 }
 
-.icon-link .icon-chevron-right,
-.icon-link .icon-arrow-right {
-  transition: opacity 0.3s ease-in-out;
+.icon-link .iconWrapper {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.icon-link .iconWrapper > :first-child {
   margin-left: 1rem;
-}
-
-.icon-link .icon-chevron-right {
+  transition: opacity 0.3s ease-in-out;
   opacity: 1;
-  display: inline-block;
 }
 
-.icon-link .icon-arrow-right {
+.icon-link .iconWrapper > :last-child {
+  margin-left: 1rem;
+  transition: opacity 0.3s ease-in-out;
+  position: absolute;
   opacity: 0;
-  display: none;
 }
 
-.icon-link:hover .icon-chevron-right {
+.icon-link:hover .iconWrapper > :first-child {
   opacity: 0;
-  display: none;
 }
 
-.icon-link:hover .icon-arrow-right {
+.icon-link:hover .iconWrapper > :last-child {
   opacity: 1;
-  display: inline-block;
 }
 
 .gap-3 {

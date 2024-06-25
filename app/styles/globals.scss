@@ -105,29 +105,28 @@ footer {
   display: inline-flex;
   align-items: center;
   position: relative;
-  .icon-chevron-right,
-  .icon-arrow-right {
-    transition: opacity 0.3s ease-in-out;
+  .iconWrapper {
     position: relative;
-    margin-left: 1rem;
-  }
-  .icon-chevron-right {
-    opacity: 1;
-    display: inline-block;
-  }
-
-  .icon-arrow-right {
-    opacity: 0;
-    display: none;
+    display: inline-flex;
+    align-items: center;
+    > :first-child {
+      margin-left: 1rem;
+      transition: opacity 0.3s ease-in-out;
+      opacity: 1;
+    }
+    > :last-child {
+      margin-left: 1rem;
+      transition: opacity 0.3s ease-in-out;
+      position: absolute;
+      opacity: 0;
+    }
   }
   &:hover {
-    .icon-chevron-right {
+    .iconWrapper > :first-child {
       opacity: 0;
-      display: none;
     }
-    .icon-arrow-right {
+    .iconWrapper > :last-child {
       opacity: 1;
-      display: inline-block;
     }
   }
 }

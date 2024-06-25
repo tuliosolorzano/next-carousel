@@ -41,7 +41,7 @@ const Indicator = styled.div<IndicatorProps>`
   align-items: center;
 `;
 
-const IndicatorNumber = styled.span<IndicatorProps>`
+const IndicatorNumber = styled.span<{ active: boolean }>`
   font-size: 12px;
   line-height: 20px;
   color: ${(props) => (props.active ? '#263640' : '#C4C4C4')};
